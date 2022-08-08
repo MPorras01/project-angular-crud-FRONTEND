@@ -11,16 +11,23 @@ const USER_NAME = '';
 export class UserServiceService {
   constructor(private http: HttpClient) {}
 
-  private url: string = 'http://localhost:8090/user/saveUser';
+  private API_SERVER = 'http://localhost:8090/user/';
 
-  
+  public getAllUser(): Observable<any> {
+    this.http.get(this.API_SERVER).subscribe((response) => {
+      console.log(response);
+    });
 
-  public saveUser(usuario: string,): Observable<User> {
-    console.log(usuario);
+    return this.http.get(this.API_SERVER);
+  }
 
-    window.sessionStorage.setItem(USER_NAME, usuario);
+  public saveUser(user: any): Observable<any> {
+    return this.http.post(this.API_SERVER, user);
+  }
 
-       return this.http.post<User>(this.url, usuario);
+
+  public updateUser(user: any): Observable<any> {
+    return this.http.put(this.API_SERVER, user);
   }
 
   public getUser() {
