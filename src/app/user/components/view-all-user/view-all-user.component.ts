@@ -31,4 +31,11 @@ export class ViewAllUserComponent implements OnInit {
   onSelectUser(user: User) {
     this.userToUpdate = user;
   }
+
+  deletedUser(id: number): void {
+    this.userService
+      .deletedUser(id)
+      .subscribe((response: any) => {});
+       window.location.reload();
+  }
 }

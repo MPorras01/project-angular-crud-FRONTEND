@@ -41,12 +41,13 @@ export class EditUserModalComponent implements OnInit {
     console.log('useeer' + JSON.stringify(this.userToUpdate));
 
     this.createForm();
+    this.user.reset();
   }
 
   createForm() {
     this.user = this._fb.group(
       {
-        id: ['', Validators.required],
+        id: ['', Validators.nullValidator],
         name: ['', Validators.required],
         documentNumber: ['', Validators.required],
         userName: [
@@ -73,10 +74,9 @@ export class EditUserModalComponent implements OnInit {
   }
 
   updateUser(): void {
-
     console.log('this.user.value:   ' + JSON.stringify(this.user.value));
-    
-    this.userService.updateUser(this.user.value).subscribe((response:any) => {
+
+    this.userService.updateUser(this.user.value).subscribe((response: any) => {
       this.user.reset();
 
       this.userToSave = this.userToSave.filter(
@@ -84,4 +84,5 @@ export class EditUserModalComponent implements OnInit {
       );
     });
   }
+
 }

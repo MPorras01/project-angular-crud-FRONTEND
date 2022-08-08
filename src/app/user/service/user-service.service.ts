@@ -25,9 +25,14 @@ export class UserServiceService {
     return this.http.post(this.API_SERVER, user);
   }
 
-
   public updateUser(user: any): Observable<any> {
     return this.http.put(this.API_SERVER, user);
+  }
+
+  public deletedUser(id: any): Observable<any> {
+console.log("sii llega el id " +id);
+
+    return this.http.delete<any>(this.API_SERVER + id);
   }
 
   public getUser() {
