@@ -1,10 +1,10 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>name</th>
-      <th>documentNumber</th>
-      <th>userName</th>
-      <th>password</th>
+      <th>Nombre</th>
+      <th>Documento</th>
+      <th>Nombre de usuario</th>
+      <th>Contraseña</th>
 
       <th></th>
       <th></th>
@@ -23,18 +23,16 @@
           value="Editar"
           style="margin: 3%"
           data-bs-toggle="modal"
-          data-bs-target="#modalPokemon"
+          data-bs-target="#modalEditUser"
         >
           Editar
         </button>
         <button type="button" class="btn btn-danger" (click) ="deletedUser(user.id)" value="Eliminar">
           Eliminar
         </button>
-
-        <app-edit-user-modal [userToUpdate]="userToUpdate">
-        </app-edit-user-modal
-        >
       </td>
     </tr>
+     <app-edit-user-modal [userToUpdate]="userToUpdate">
+     </app-edit-user-modal>
   </tbody>
 </table>

@@ -1,14 +1,14 @@
 <div
   class="modal fade"
-  id="modalPokemon"
+  id="modalEditUser"
   tabindex="-1"
-  aria-labelledby="modalPokemonLabel"
+  aria-labelledby="modalEditUserLabel"
   aria-hidden="true"
 >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalPokemonLabel">
+        <h5 class="modal-title" id="modalEditUserLabel">
           Editar usuario: {{ userToUpdate.userName }}
         </h5>
         <button
@@ -21,14 +21,13 @@
       <div class="modal-body">
         <div style="text-align: center">
           <form novalidate [formGroup]="user">
-            <div class="form-group">
+            <div class="form-group" style="display: none;">
               <label>
                 <input
                   type="text"
                   class="form-control"
                   placeholder="Ingrese el nombre"
                   formControlName="id"
-                  value="{{ userToUpdate.id }}"
                 />
               </label>
             </div>
@@ -40,15 +39,13 @@
                   class="form-control"
                   placeholder="Ingrese el nombre"
                   formControlName="name"
-                  value="{{ userToUpdate.name }}"
                 />
               </label>
               <div
                 class="error"
                 style="color: red"
                 *ngIf="
-                  user.get('name')?.hasError('required') &&
-                  user.get('name')?.touched
+                  user.get('name')?.hasError('required') 
                 "
               >
                 Nombre requerido
@@ -62,7 +59,6 @@
                   class="form-control"
                   placeholder="Ingrese el numero de documento"
                   formControlName="documentNumber"
-                  value="{{ userToUpdate.documentNumber }}"
                 />
               </label>
             </div>
@@ -70,8 +66,7 @@
               class="error"
               style="color: red"
               *ngIf="
-                user.get('documentNumber')?.hasError('required') &&
-                user.get('documentNumber')?.touched
+                user.get('documentNumber')?.hasError('required') 
               "
             >
               Documento requerido
@@ -84,7 +79,6 @@
                   class="form-control"
                   placeholder="Ingrese su nombre de usuario"
                   formControlName="userName"
-                  value="{{ userToUpdate.userName }}"
                 />
               </label>
             </div>
@@ -92,8 +86,7 @@
               class="error"
               style="color: red"
               *ngIf="
-                user.get('userName')?.hasError('required') &&
-                user.get('userName')?.touched
+                user.get('userName')?.hasError('required')
               "
             >
               Nombre de usuario requerido
@@ -107,7 +100,6 @@
                   class="form-control"
                   placeholder="Ingrese su contraseña"
                   formControlName="password"
-                  value="{{ userToUpdate.password }}"
                 />
               </label>
             </div>
@@ -127,7 +119,6 @@
                   class="form-control"
                   placeholder="Ingrese su contraseña"
                   formControlName="confirmPassword"
-                  value="{{ userToUpdate.password }}"
                   [errorStateMatcher]="matcher"
                 />
               </label>

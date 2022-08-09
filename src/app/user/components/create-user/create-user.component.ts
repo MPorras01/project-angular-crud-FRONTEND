@@ -22,26 +22,27 @@ import { UserServiceService } from '../../service/user-service.service';
   styleUrls: ['./create-user.component.scss'],
 })
 export class CreateUserComponent implements OnInit {
-
   public user: FormGroup = new FormGroup({});
   showPassword: boolean = false;
 
-  constructor(private _fb: FormBuilder, private userService: UserServiceService) {}
-
+  constructor(
+    private _fb: FormBuilder,
+    private userService: UserServiceService
+  ) {}
 
   matcher = new MyErrorStateMatcher();
 
-  userToSave: any ;
+  userToSave: any;
 
-  saveUser(): void{
-
-    this.userService.saveUser(this.user.value).subscribe(response => {
+  saveUser(): void {
+    this.userService.saveUser(this.user.value).subscribe((response) => {
       this.user.reset();
 
-      this.userToSave = this.userToSave.filter((item: { id: any }) => response.id != item.id );
+      this.userToSave = response.filter(
+        (item: { id: any }) => response.id != item.id
+      );
 
     });
-
   }
 
   checkPasswords: ValidatorFn = (
@@ -76,5 +77,3 @@ export class CreateUserComponent implements OnInit {
     this.createForm();
   }
 }
-
-

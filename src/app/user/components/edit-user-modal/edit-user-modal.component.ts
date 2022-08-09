@@ -38,10 +38,11 @@ export class EditUserModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('useeer' + JSON.stringify(this.userToUpdate));
-
     this.createForm();
-    this.user.reset();
+  }
+
+  ngOnChanges() {
+    this.setFormsValues();
   }
 
   createForm() {
@@ -50,15 +51,23 @@ export class EditUserModalComponent implements OnInit {
         id: ['', Validators.nullValidator],
         name: ['', Validators.required],
         documentNumber: ['', Validators.required],
-        userName: [
-          '',
-          [Validators.required, Validators.min(18), Validators.max(65)],
-        ],
+        userName: ['', Validators.required],
         password: ['', Validators.required],
         confirmPassword: [''],
       },
       { validators: this.checkPasswords }
     );
+  }
+
+  setFormsValues() {
+    this.user.patchValue({
+      id: this.userToUpdate.id,
+      name: this.userToUpdate.name,
+      documentNumber: this.userToUpdate.documentNumber,
+      userName: this.userToUpdate.userName,
+      password: this.userToUpdate.password,
+      confirmPassword: this.userToUpdate.password,
+    });
   }
 
   checkPasswords: ValidatorFn = (
@@ -78,11 +87,6 @@ export class EditUserModalComponent implements OnInit {
 
     this.userService.updateUser(this.user.value).subscribe((response: any) => {
       this.user.reset();
-
-      this.userToSave = this.userToSave.filter(
-        (item: { id: any }) => response.id != item.id
-      );
     });
   }
-
 }

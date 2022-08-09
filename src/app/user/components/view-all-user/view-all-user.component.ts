@@ -8,6 +8,7 @@ import { UserServiceService } from '../../service/user-service.service';
   styleUrls: ['./view-all-user.component.scss'],
 })
 export class ViewAllUserComponent implements OnInit {
+  
   listUser: User[] = [];
 
   constructor(private userService: UserServiceService) {}

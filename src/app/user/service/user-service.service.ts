@@ -14,9 +14,6 @@ export class UserServiceService {
   private API_SERVER = 'http://localhost:8090/user/';
 
   public getAllUser(): Observable<any> {
-    this.http.get(this.API_SERVER).subscribe((response) => {
-      console.log(response);
-    });
 
     return this.http.get(this.API_SERVER);
   }
@@ -30,12 +27,14 @@ export class UserServiceService {
   }
 
   public deletedUser(id: any): Observable<any> {
-console.log("sii llega el id " +id);
-
     return this.http.delete<any>(this.API_SERVER + id);
   }
 
   public getUser() {
-    window.sessionStorage.getItem(USER_NAME);
+    return sessionStorage.getItem('userName');
+  }
+
+  public saveUserSesion(userName: string) {
+    window.sessionStorage.setItem('userName', userName);
   }
 }

@@ -1,1 +1,46 @@
-<p>view-all-persons works!</p>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Documento</th>
+      <th>Edad</th>
+      <th>Estatura</th>
+      <th>Talla</th>
+      <th>Peso</th>
+
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody style="align: center">
+    <tr *ngFor="let person of listPerson">
+      <td>{{ person.name }}</td>
+      <td>{{ person.lastName }}</td>
+      <td>{{ person.document }}</td>
+      <td>{{ person.age }}</td>
+      <td>{{ person.stature }}</td>
+      <td>{{ person.size }}</td>
+      <td>{{ person.weight }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-info"
+          value="Editar"
+          style="margin: 3%"
+          data-bs-toggle="modal"
+          data-bs-target="#modalEditUser"
+        >
+          Editar
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          value="Eliminar"
+        >
+          Eliminar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

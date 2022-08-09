@@ -1,1 +1,174 @@
-<p>create-person works!</p>
+<h1 class="text-center">Crear personas</h1>
+<hr />
+<div style="text-align: center">
+  <form novalidate [formGroup]="user">
+    <div class="form-group">
+      <label>
+        <span>Nombres</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Ingrese el nombre"
+          formControlName="name"
+        />
+      </label>
+      <div
+        class="error"
+        style="color: red"
+        *ngIf="
+          user.get('name')?.hasError('required') && user.get('name')?.touched
+        "
+      >
+        Nombre requerido
+      </div>
+    </div>
+
+     <div class="form-group">
+      <label>
+        <span>Apellidos</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Ingrese su nombre de usuario"
+          formControlName="lastName"
+        />
+      </label>
+    </div>
+    <div
+      class="error"
+      style="color: red"
+      *ngIf="
+        user.get('lastName')?.hasError('required') &&
+        user.get('lastName')?.touched
+      "
+    >
+      Apellidos requerido
+    </div>
+
+     <div class="form-group">
+      <label>
+        <span>Edad</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Ingrese su nombre de usuario"
+          formControlName="age"
+        />
+      </label>
+    </div>
+    <div
+      class="error"
+      style="color: red"
+      *ngIf="
+        user.get('age')?.hasError('required') &&
+        user.get('age')?.touched
+      "
+    >
+      Edad requerida
+    </div>
+
+     <div class="form-group">
+      <label>
+        <span>Estatura</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Ingrese su nombre de usuario"
+          formControlName="stature"
+        />
+      </label>
+    </div>
+    <div
+      class="error"
+      style="color: red"
+      *ngIf="
+        user.get('stature')?.hasError('required') &&
+        user.get('stature')?.touched
+      "
+    >
+      Estatura requerida
+    </div>
+
+     <div class="form-group">
+      <label>
+        <span>Talla</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Ingrese su nombre de usuario"
+          formControlName="size"
+        />
+      </label>
+    </div>
+    <div
+      class="error"
+      style="color: red"
+      *ngIf="
+        user.get('size')?.hasError('required') &&
+        user.get('size')?.touched
+      "
+    >
+      Talla requerida
+    </div>
+
+     <div class="form-group">
+      <label>
+        <span>Peso</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Ingrese su nombre de usuario"
+          formControlName="weight"
+        />
+      </label>
+    </div>
+    <div
+      class="error"
+      style="color: red"
+      *ngIf="
+        user.get('weight')?.hasError('required') &&
+        user.get('weight')?.touched
+      "
+    >
+      Peso requerido
+    </div>
+
+
+    <div class="form-group">
+      <label>
+        <span>Documento</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Ingrese el numero de documento"
+          formControlName="document"
+        />
+      </label>
+    </div>
+    <div
+      class="error"
+      style="color: red"
+      *ngIf="
+        user.get('document')?.hasError('required') &&
+        user.get('document')?.touched
+      "
+    >
+      Documento requerido
+    </div>
+    <div>
+      <button
+        type="submit"
+        [disabled]="user.invalid"
+        class="btn btn-success mt-3"
+        (click)="savePerson()"
+      >
+        Registrar persona
+      </button>
+    </div>
+    <div>
+      <p>Form value : {{ user.value | json }}</p>
+      <p>Form status : {{ user.status | json }}</p>
+    </div>
+  </form>
+</div>
+
