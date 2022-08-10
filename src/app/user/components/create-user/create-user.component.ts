@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
-  FormControl,
   FormGroup,
-  FormGroupDirective,
-  NgForm,
   ValidationErrors,
   ValidatorFn,
   Validators,
@@ -60,10 +56,9 @@ export class CreateUserComponent implements OnInit {
   }
 
   checkPasswords: ValidatorFn = (
-    group: AbstractControl
   ): ValidationErrors | null => {
-    let pass = this.user.get('password')?.value;
-    let confirmPass = this.user.get('confirmPassword')?.value;
+    const pass = this.user.get('password')?.value;
+    const confirmPass = this.user.get('confirmPassword')?.value;
     return pass === confirmPass ? null : { isValid: false };
   };
 

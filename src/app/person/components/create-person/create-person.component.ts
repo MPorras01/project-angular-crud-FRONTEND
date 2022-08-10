@@ -12,8 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class CreatePersonComponent implements OnInit {
   public user: FormGroup = new FormGroup({});
-  showPassword: boolean = false;
-
+ 
   constructor(
     private _fb: FormBuilder,
     private PersonService: PersonService

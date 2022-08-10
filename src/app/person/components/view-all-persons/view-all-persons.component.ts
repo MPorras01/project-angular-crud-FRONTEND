@@ -38,10 +38,10 @@ export class ViewAllPersonsComponent implements OnInit {
   }
 
   deletedPerson(id: number): void {
-    this.personService.deletedPerson(id).subscribe((response: any) => {
+    this.personService.deletedPerson(id).subscribe(() => {
       Swal.fire({
         icon: 'success',
-        title: 'Se elimino el usuario correctamente',
+        title: 'Se elimino la persona correctamente',
         showConfirmButton: false,
         timer: 1500,
       });
@@ -58,6 +58,6 @@ export class ViewAllPersonsComponent implements OnInit {
      window.location.reload();
    }, 1000);
 
-   
+
   }
 }

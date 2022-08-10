@@ -72,7 +72,7 @@ export class EditPersonModalComponent implements OnInit {
   updatePerson(): void {
     this.personService
       .updatePerson(this.person.value)
-      .subscribe((response: any) => {
+      .subscribe(() => {
         Swal.fire({
           icon: 'success',
           title: 'Se edito la persona correctamente',

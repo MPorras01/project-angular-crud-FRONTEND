@@ -46,7 +46,7 @@ export class ViewAllUserComponent implements OnInit {
   deletedUser(id: number): void {
     this.userService
       .deletedUser(id)
-      .subscribe((response: any) => {
+      .subscribe(() => {
         Swal.fire({
           icon: 'success',
           title: 'Se eliminó el usuario correctamente',

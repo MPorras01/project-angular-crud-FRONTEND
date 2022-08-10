@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from '../model/user';
 
-const USER_NAME = '';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +10,7 @@ export class UserServiceService {
   constructor(private http: HttpClient) {}
 
   private API_SERVER = 'http://localhost:8090/user/';
-  
+
   autenticate: boolean = false;
 
   public changeAutenticate(){

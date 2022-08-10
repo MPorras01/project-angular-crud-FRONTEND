@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormGroup,
   ValidationErrors,
@@ -73,10 +72,10 @@ export class EditUserModalComponent implements OnInit {
   }
 
   checkPasswords: ValidatorFn = (
-    group: AbstractControl
+
   ): ValidationErrors | null => {
-    let pass = this.user.get('password')?.value;
-    let confirmPass = this.user.get('confirmPassword')?.value;
+    const pass = this.user.get('password')?.value;
+    const confirmPass = this.user.get('confirmPassword')?.value;
     return pass === confirmPass ? null : { isValid: false };
   };
 
@@ -86,7 +85,7 @@ export class EditUserModalComponent implements OnInit {
 
   updateUser(): void {
     this.userService.updateUser(this.user.value).subscribe(
-      (response: any) => {
+      () => {
         this.user.reset();
         Swal.fire({
           icon: 'success',
