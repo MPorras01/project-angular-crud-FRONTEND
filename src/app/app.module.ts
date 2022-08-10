@@ -15,6 +15,8 @@ import { MatInputModule } from '@angular/material/input';
 import { EditUserModalComponent } from './user/components/edit-user-modal/edit-user-modal.component';
 import { CreatePersonComponent } from './person/components/create-person/create-person.component';
 import { ViewAllPersonsComponent } from './person/components/view-all-persons/view-all-persons.component';
+import { EditPersonModalComponent } from './person/components/edit-person-modal/edit-person-modal.component';
+import { FooterComponent } from './person/components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,9 @@ import { ViewAllPersonsComponent } from './person/components/view-all-persons/vi
     EditUserModalComponent,
     CreatePersonComponent,
     ViewAllPersonsComponent,
+    EditPersonModalComponent,
+    EditUserModalComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

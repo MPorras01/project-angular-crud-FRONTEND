@@ -79,7 +79,9 @@
     <div
       class="error"
       style="color: red"
-      *ngIf="user.get('password')?.hasError('required')"
+      *ngIf="user.get('password')?.hasError('required') &&
+        user.get('userName')?.touched"
+      
     >
       Contraseña requerida
     </div>
@@ -113,12 +115,8 @@
         class="btn btn-success mt-3"
         (click)="saveUser()"
       >
-        Registrar persona
+        Registrar usuario
       </button>
-    </div>
-    <div>
-      <p>Form value : {{ user.value | json }}</p>
-      <p>Form status : {{ user.status | json }}</p>
     </div>
   </form>
 </div>

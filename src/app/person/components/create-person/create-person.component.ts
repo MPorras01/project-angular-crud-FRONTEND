@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MyErrorStateMatcher } from 'src/app/resources/myErrorStateMatcher';
-import { UserServiceService } from 'src/app/user/service/user-service.service';
 import { PersonService } from '../../service/person.service';
+import Swal from 'sweetalert2';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-person',
@@ -26,10 +27,25 @@ export class CreatePersonComponent implements OnInit {
     this.PersonService.savePerson(this.user.value).subscribe((response) => {
       this.user.reset();
 
+      Swal.fire({
+        icon: 'success',
+        title: 'Se guardo la persona correctamente',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
       this.userToSave = this.userToSave.filter(
         (item: { id: any }) => response.id != item.id
       );
-    });
+    },(error: HttpErrorResponse) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ha ocurrido un error',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          console.log(error);
+        });
   }
 
 

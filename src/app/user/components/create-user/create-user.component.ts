@@ -11,10 +11,10 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { ErrorStateMatcher } from '@angular/material/core';
 import { MyErrorStateMatcher } from 'src/app/resources/myErrorStateMatcher';
-import { User } from '../../model/user';
 import { UserServiceService } from '../../service/user-service.service';
+import Swal from 'sweetalert2';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-user',
@@ -37,12 +37,26 @@ export class CreateUserComponent implements OnInit {
   saveUser(): void {
     this.userService.saveUser(this.user.value).subscribe((response) => {
       this.user.reset();
+      Swal.fire({
+        icon: 'success',
+        title: 'Se guardo el usuario correctamente',
+        showConfirmButton: false,
+        timer: 1500,
+      });
 
       this.userToSave = response.filter(
         (item: { id: any }) => response.id != item.id
       );
 
-    });
+    }, (error: HttpErrorResponse) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ha ocurrido un error',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          console.log(error);
+        });
   }
 
   checkPasswords: ValidatorFn = (
@@ -58,10 +72,7 @@ export class CreateUserComponent implements OnInit {
       {
         name: ['', Validators.required],
         documentNumber: ['', Validators.required],
-        userName: [
-          '',
-          [Validators.required, Validators.min(18), Validators.max(65)],
-        ],
+        userName: ['', Validators.required],
         password: ['', Validators.required],
         confirmPassword: [''],
       },

@@ -10,6 +10,8 @@ import {
 import { MyErrorStateMatcher } from 'src/app/resources/myErrorStateMatcher';
 import { User } from '../../model/user';
 import { UserServiceService } from '../../service/user-service.service';
+import Swal from 'sweetalert2';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit-user-modal',
@@ -83,10 +85,30 @@ export class EditUserModalComponent implements OnInit {
   }
 
   updateUser(): void {
-    console.log('this.user.value:   ' + JSON.stringify(this.user.value));
+    this.userService.updateUser(this.user.value).subscribe(
+      (response: any) => {
+        this.user.reset();
+        Swal.fire({
+          icon: 'success',
+          title: 'Se edito el usuario correctamente',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      },
+      (error: HttpErrorResponse) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Ha ocurrido un error',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        console.log(error);
+      }
+    );
 
-    this.userService.updateUser(this.user.value).subscribe((response: any) => {
-      this.user.reset();
-    });
+    setTimeout(() => {
+    window.location.reload();
+  }, 1000);
+
   }
 }

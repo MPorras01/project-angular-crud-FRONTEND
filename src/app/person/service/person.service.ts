@@ -17,4 +17,14 @@ export class PersonService {
   public getAllPerson(): Observable<any> {
     return this.http.get(this.API_SERVER);
   }
+
+  public updatePerson(person: any): Observable<any> {
+    console.log(person);
+
+    return this.http.put(this.API_SERVER, person);
+  }
+
+  public deletedPerson(id: any): Observable<any> {
+    return this.http.delete<any>(this.API_SERVER + id);
+  }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../model/user';
 import { UserServiceService } from '../../service/user-service.service';
+import Swal from 'sweetalert2';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-view-all-user',
@@ -26,7 +28,15 @@ export class ViewAllUserComponent implements OnInit {
       console.log(response);
 
       this.listUser = response;
-    });
+    }, (error: HttpErrorResponse) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ha ocurrido un error',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          console.log(error);
+        });
   }
 
   onSelectUser(user: User) {
@@ -36,7 +46,17 @@ export class ViewAllUserComponent implements OnInit {
   deletedUser(id: number): void {
     this.userService
       .deletedUser(id)
-      .subscribe((response: any) => {});
+      .subscribe((response: any) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Se eliminó el usuario correctamente',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+     setTimeout(() => {
        window.location.reload();
+     }, 1000);
+       
   }
 }
